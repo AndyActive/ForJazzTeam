@@ -1,5 +1,4 @@
 import org.junit.jupiter.api.Test;
-import java.io.IOException;
 
 import java.util.Map;
 
@@ -28,8 +27,7 @@ class MainTest {
     }
 
     @Test
-    public void anyNumber() throws IOException {
-
+    public void anyNumber()  {
         Map<String, String> test1 = Map.of(
                 "334", "триста тридцать четыре ",
                 "1029", "одна тысяча двадцать девять ",
@@ -43,7 +41,8 @@ class MainTest {
         );
         for (String key : test1.keySet()) {
             assertEquals(test1.get(key), Main.result(key));
+            System.out.println(test1.get(key)+" : "+Main.result(key));
         }
-        System.out.println();
+
     }
 }
