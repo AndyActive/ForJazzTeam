@@ -1,13 +1,11 @@
 import org.junit.jupiter.api.Test;
-
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
+
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class MainTest {
-     Main main = new Main();
 
     @Test
     public void noNumber()  {
@@ -24,21 +22,28 @@ class MainTest {
     }
     @Test
     public void zero() {
-        String expected = "ноль ";
+        String expected = "Ноль ";
         String comparison = Main.result("0");
         assertEquals(expected,comparison);
     }
 
     @Test
     public void anyNumber() throws IOException {
-        String expected ;
-        String comparison ;
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        System.out.println("Ведите числовое значение");
-        comparison = reader.readLine();
-        System.out.println("введите строковое представление числе");
-       expected = reader.readLine();
-       comparison= Main.result(comparison);
-        assertEquals(expected,comparison);
+
+        Map<String, String> test1 = Map.of(
+                "334", "триста тридцать четыре ",
+                "1029", "одна тысяча двадцать девять ",
+                "2818", "две тысячи восемьсот восемнадцать ",
+                "10001", "десять тысяч один ",
+                "645984978947897489464156897495614798748974665498498", "шестьсот сорок пять квиндециллионов девятьсот восемьдесят четыре кваттуордециллионов девятьсот семьдесят восемь тредециллионов девятьсот сорок семь дуодециллионов восемьсот девяносто семь ундециллионов четыреста восемьдесят девять дециллионов четыреста шестьдесят четыре нониллионов сто пятьдесят шесть октиллионов восемьсот девяносто семь септиллионов четыреста девяносто пять секстиллионов шестьсот четырнадцать квинтиллионов семьсот девяносто восемь квадриллионов семьсот сорок восемь триллионов девятьсот семьдесят четыре миллиардов шестьсот шестьдесят пять миллионов четыреста девяносто восемь тысяч четыреста девяносто восемь ",
+                "456488", "четыреста пятьдесят шесть тысяч четыреста восемьдесят восемь ",
+                "458011", "четыреста пятьдесят восемь тысяч одиннадцать ",
+                "888896522", "восемьсот восемьдесят восемь миллионов восемьсот девяносто шесть тысяч пятьсот двадцать два ",
+                "5895468468416", "пять триллионов восемьсот девяносто пять миллиардов четыреста шестьдесят восемь миллионов четыреста шестьдесят восемь тысяч четыреста шестнадцать "
+        );
+        for (String key : test1.keySet()) {
+            assertEquals(test1.get(key), Main.result(key));
+        }
+        System.out.println();
     }
 }
