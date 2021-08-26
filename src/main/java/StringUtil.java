@@ -1,4 +1,4 @@
-public class ResultStringFormat {
+public class StringUtil {
     static void removeWhiteSpaces(StringBuilder sb) {
         int end = 0;
         int spaceIndex = -1;

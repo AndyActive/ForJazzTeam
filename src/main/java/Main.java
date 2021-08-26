@@ -6,27 +6,25 @@ import java.nio.file.Paths;
 
 
 public class Main {
-    static String[] ending;
-    static String[] dig1;
-    static String[] dig20;
-    static String[] dig100;
-    static String[] digStandart;
+    static String patchToDictionary = "./src/main/resources/constant.txt";
+    static DictioinalLoader dictioinalLoader= new DictioinalLoader(patchToDictionary);
+    static String[] ending = dictioinalLoader.gerEnding();
+    static String[] dig1 = dictioinalLoader.gerDig1();
+    static String[] dig20 = dictioinalLoader.getDig20();
+    static String[] dig100 = dictioinalLoader.gerDig100();
+    static String[] digStandart = dictioinalLoader.gerDigStandart();
     static boolean working = true;
-    static {
-        try {
-            ending = Files.readAllLines(Paths.get("./src/main/resources/constant.txt")).get(1).split(" ");
-            dig1 = Files.readAllLines(Paths.get("./src/main/resources/constant.txt")).get(2).split(" ");
-            dig20 = Files.readAllLines(Paths.get("./src/main/resources/constant.txt")).get(3).split(" ");
-            dig100 = Files.readAllLines(Paths.get("./src/main/resources/constant.txt")).get(4).split(" ");
-            digStandart = Files.readAllLines(Paths.get("./src/main/resources/constant.txt")).get(5).split(" ");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        System.out.println("Для выхода напишите: exit");
+        while (working)  {
+            String digit = bufferedReader.readLine();
+            if (!digit.equals("exit")){
+                System.out.println( "Введите число >>\n" + new Service().TranslateNumbersToString(digit));
+            }
 
-        while (working)  System.out.println("Для выхода напишите: exit\n"+new Service().result(bufferedReader.readLine()));
+            else working=false;
+        }
     }
 }

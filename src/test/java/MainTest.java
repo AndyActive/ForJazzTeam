@@ -9,20 +9,20 @@ class MainTest {
     @Test
     public void noNumber()  {
         String expected = "в переданной строке находятся буквенные значения, пожалуйста отредактируйте ваш запрос.";
-        String comparison =new Service().result("Not number");
+        String comparison =new Service().TranslateNumbersToString("Not number");
        assertEquals(expected,comparison);
     }
     @Test
     public void tooBig()  {
         String expected = "Выключите пожалуйста залипание клавиш и попробуйте снова.";
-        String comparison = new Service().result("5555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555" +
+        String comparison = new Service().TranslateNumbersToString("5555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555" +
                 "555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555");
         assertEquals(expected,comparison);
     }
     @Test
     public void zero() {
         String expected = "Ноль ";
-        String comparison = new Service().result("0");
+        String comparison = new Service().TranslateNumbersToString("0");
         assertEquals(expected,comparison);
     }
 
@@ -40,8 +40,8 @@ class MainTest {
                 "5895468468416", "пять триллионов восемьсот девяносто пять миллиардов четыреста шестьдесят восемь миллионов четыреста шестьдесят восемь тысяч четыреста шестнадцать "//
         );
         for (String key : test1.keySet()) {
-            assertEquals(test1.get(key), new Service().result(key));
-            System.out.println(test1.get(key)+" : "+new Service().result(key));
+            assertEquals(test1.get(key), new Service().TranslateNumbersToString(key));
+            System.out.println(test1.get(key)+" : "+new Service().TranslateNumbersToString(key));
         }
 
     }
