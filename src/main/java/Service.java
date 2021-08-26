@@ -23,13 +23,12 @@ public class Service {
                 result.insert(0, addDegreeNames(enter.substring(0, 2)));
                 result.insert(0, numbersToString(enter.substring(0, 2)) + " ");
             }
-            ResultStringFormat.removeWhiteSpaces(result);///////////////
+            ResultStringFormat.removeWhiteSpaces(result);
             return result.toString();
         } catch (NumberFormatException e) {
             return "в переданной строке находятся буквенные значения, пожалуйста отредактируйте ваш запрос.";
         }
     }
-
 
     public String numbersToString(String enter) {
         if (enter.charAt(0) == '0') enter = enter.substring(1, 3);
