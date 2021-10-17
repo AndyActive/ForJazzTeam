@@ -1,11 +1,25 @@
+import basic.DictioinalLoader;
 import org.junit.jupiter.api.Test;
+import service.Service;
 
+import java.io.IOException;
 import java.util.Map;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class MainTest {
-
+    // тест для исключения
+    @Test
+    public void testCreateTempFile() {
+        Throwable thrown = assertThrows(IOException.class, () -> new DictioinalLoader("any path except ./src/main/resources/constant.txt1"));
+        assertNotNull(thrown.getMessage());
+    }
+    @Test
+    public void commaSeparatedNumber()  {
+        String expected = "девяносто девять миллионов девятьсот девяносто девять тысяч девятьсот девяносто девять ";
+        String comparison =new Service().TranslateNumbersToString("999,999,99");
+        assertEquals(expected,comparison);
+    }
+//тест для исключения
     @Test
     public void noNumber()  {
         String expected = "в переданной строке находятся буквенные значения, пожалуйста отредактируйте ваш запрос.";
